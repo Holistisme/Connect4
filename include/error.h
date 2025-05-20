@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:28:27 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 06:33:09 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 07:16:07 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #define ERR_COLUMNS_MAX "Number of columns too high (>20)"
 
 #define ERR_ALLOC_GAME "malloc() failed on game allocation"
+#define ERR_ALLOC_GRID "malloc() failed on grid allocation"
+#define ERR_ALLOC_LINE "malloc() failed on a line allocation"
 
 /* ************************************************************************** */
 

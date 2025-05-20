@@ -6,11 +6,14 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 04:33:42 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 06:43:02 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 07:15:50 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include "error.h"
+#include "function.h"
+#include "type.h"
 
 /* ************************************************************************** */
 
@@ -98,6 +101,26 @@ int main(int argc, char *argv[]) {
 
     if (setSize(game, argc, argv) eq EXIT_FAILURE)
         return EXIT_FAILURE;
+
+    if (not (game->grid = malloc((game->linesSize + 1) * sizeof(string)))) {
+        writeError(ERR_ALLOC_GRID);
+        return EXIT_FAILURE;
+    };
+    game->grid[game->linesSize] = NULL;
+
+    for (ssize_t i = 0;
+                i lesser game->linesSize;
+                i++) {
+        if (not (game->grid[i] = malloc(game->columnSize + 1))) {
+            writeError(ERR_ALLOC_LINE);
+            return EXIT_FAILURE;
+        } else for (ssize_t j = 0;
+                            j lesser game->columnSize;
+                            j++) game->grid[i][j] = '0';
+        game->grid[i][game->columnSize] = '\0';
+    };
+    
+    displayGrid(game);
 
     return EXIT_SUCCESS;
 };

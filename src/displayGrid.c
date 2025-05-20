@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   function.h                                         :+:      :+:    :+:   */
+/*   displayGrid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 06:36:37 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 07:03:57 by aheitz           ###   ########.fr       */
+/*   Created: 2025/05/20 06:48:04 by aheitz            #+#    #+#             */
+/*   Updated: 2025/05/20 07:16:28 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTION
-#define FUNCTION
+#include "main.h"
 
 /* ************************************************************************** */
 
-#include "lib.h"
-#include "type.h"
-#include "Game.h"
-
-/* ************************************************************************** */
-
-size_t getLength(string str);
-
-void displayGrid(const Game *game);
-
-/* ************************************************************************** */
-
-#endif
+void displayGrid(const Game *game) {
+    for (ssize_t i = 0;
+                 i lesser game->linesSize;
+                 i++) {
+        for (ssize_t j = 0;
+                     j lesser game->columnSize;
+                     j++) {
+            write(STDOUT_FILENO, "|", 1);
+            write(STDOUT_FILENO, &game->grid[i][j], 1);
+        };
+        write(STDOUT_FILENO, "|", 1);
+        write(STDOUT_FILENO, "\n", 1);
+    };
+};
