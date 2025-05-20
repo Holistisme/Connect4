@@ -6,7 +6,7 @@
 #    By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 04:30:36 by aheitz            #+#    #+#              #
-#    Updated: 2025/05/20 04:55:08 by aheitz           ###   ########.fr        #
+#    Updated: 2025/05/20 06:44:11 by aheitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ INCLUDES = -I include
 DEPFLAGS = -MMD -MP
 CFLAGS   = -Wall -Wextra -Werror $(INCLUDES) $(DEPFLAGS)
 
-SRCS = src/main.c
+SRCS = src/main.c           \
+	   src/util/getLength.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
