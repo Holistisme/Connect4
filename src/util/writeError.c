@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macro.h                                            :+:      :+:    :+:   */
+/*   writeError.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 06:32:28 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 09:47:55 by aheitz           ###   ########.fr       */
+/*   Created: 2025/05/20 09:18:19 by aheitz            #+#    #+#             */
+/*   Updated: 2025/05/20 09:19:10 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACRO
-#define MACRO
+#include "main.h"
 
 /* ************************************************************************** */
 
-#define SPACE    ' '
-#define TAB      '\t'
-#define CARRIAGE '\r'
-
-#define MAX_LINES   20
-#define MIN_LINES   6
-#define MAX_COLUMNS 20
-#define MIN_COLUMNS 7
-
-#define NEUTRAL '0'
-#define PLAYER  '1'
-#define AI      '2'
-
-#define FAIL -1
-
-/* ************************************************************************** */
-
-#endif
+/**
+ * Write an error code on the stderr output followed by a newline
+ */
+inline void writeError(string err) {
+    if (err) {
+        const ssize_t len = getLength(err);
+        if (write(STDERR_FILENO, err, len) eq len)
+            write(STDERR_FILENO, "\n", 1);
+    }
+};

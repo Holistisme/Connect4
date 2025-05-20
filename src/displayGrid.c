@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:48:04 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 07:16:28 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 09:12:57 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 /* ************************************************************************** */
 
+/**
+ * Displays the grid on the terminal
+ */
 void displayGrid(const Game *game) {
     for (ssize_t i = 0;
                  i lesser game->linesSize;

@@ -6,27 +6,11 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 04:33:42 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 07:15:50 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 10:18:40 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include "error.h"
-#include "function.h"
-#include "type.h"
-
-/* ************************************************************************** */
-
-/**
- * Write an error code on the stderr output followed by a newline
- */
-static inline void writeError(string err) {
-    if (err) {
-        const ssize_t len = getLength(err);
-        if (write(STDERR_FILENO, err, len) eq len)
-            write(STDERR_FILENO, "\n", 1);
-    }
-};
 
 /* ************************************************************************** */
 
@@ -92,35 +76,22 @@ static int setSize(Game *game, int argc, char *argv[]) {
  * A simple Connect4 game with AI
  */
 int main(int argc, char *argv[]) {
-    Game *game = malloc(sizeof(Game));
+    Game *game = allocGame();
 
-    if (not game) {
-        writeError(ERR_ALLOC_GAME);
+    if (not game)
+        return EXIT_FAILURE;
+
+    if (setSize(game, argc, argv) eq EXIT_FAILURE) {
+        freeGame(game);
         return EXIT_FAILURE;
     };
 
-    if (setSize(game, argc, argv) eq EXIT_FAILURE)
-        return EXIT_FAILURE;
-
-    if (not (game->grid = malloc((game->linesSize + 1) * sizeof(string)))) {
-        writeError(ERR_ALLOC_GRID);
+    if (allocGrid(game) eq EXIT_FAILURE) {
+        freeGame(game);
         return EXIT_FAILURE;
     };
-    game->grid[game->linesSize] = NULL;
 
-    for (ssize_t i = 0;
-                i lesser game->linesSize;
-                i++) {
-        if (not (game->grid[i] = malloc(game->columnSize + 1))) {
-            writeError(ERR_ALLOC_LINE);
-            return EXIT_FAILURE;
-        } else for (ssize_t j = 0;
-                            j lesser game->columnSize;
-                            j++) game->grid[i][j] = '0';
-        game->grid[i][game->columnSize] = '\0';
-    };
-    
     displayGrid(game);
-
+    freeGame(game);
     return EXIT_SUCCESS;
 };
