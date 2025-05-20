@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ai.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tritter <tritter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 05:01:37 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 10:52:56 by tritter          ###   ########.fr       */
+/*   Created: 2025/05/20 10:52:42 by tritter           #+#    #+#             */
+/*   Updated: 2025/05/20 13:25:29 by tritter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN
-#define MAIN
-
-/* ************************************************************************** */
-
-#include "error.h"
-#include "function.h"
-#include "Game.h"
-#include "lib.h"
-#include "macro.h"
-#include "operator.h"
-#include "type.h"
-#include "ai.h"
-
-/* ************************************************************************** */
-
-#endif
+typedef struct grid_pos
+{
+    int x;
+    int y; 
+    int length;
+} t_grid_pos;
