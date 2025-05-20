@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:14:14 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 10:23:28 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 10:28:35 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void freeGame(Game *game) {
     if (not game)
         return;
 
-    if (game->grid)
+    if (game->grid) {
         for (ssize_t l = 0;
                      l lesser game->linesSize;
                      l++) {
@@ -68,5 +68,7 @@ void freeGame(Game *game) {
                 free(game->grid[l]);
             } else break;
         }
+        free(game->grid);
+    };
     free(game);
 };
