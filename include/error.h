@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:28:27 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 07:16:07 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 06:29:05 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 #define ERR_ALLOC_GAME "malloc() failed on game allocation"
 #define ERR_ALLOC_GRID "malloc() failed on grid allocation"
 #define ERR_ALLOC_LINE "malloc() failed on a line allocation"
+
+#define ERR_WRITE_CLEAN  "write() failed when terminal cleaning"
+#define ERR_WRITE_LINE   "write() failed when printing grid"
+#define ERR_WRITE_PROMPT "write() failed on prompt invite"
+
+#define ERR_INVALID_POS "\nNo tokens may be dropped from this column"
+
+#define ERR_READ       "Unable to read user entry"
+#define ERR_ERASE_READ "Unable to erase user entry"
 
 /* ************************************************************************** */
 
