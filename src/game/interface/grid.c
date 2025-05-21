@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   displayGrid.c                                      :+:      :+:    :+:   */
+/*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:48:04 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 06:17:32 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 08:51:30 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int displayLine(const Game *game, const size_t line) {
             return EXIT_FAILURE;
 
         switch (game->grid[line][c]) {
-            case PLAYER:
+            case HUMAN:
                 if (write(STDOUT_FILENO, RED, getLength(RED)) eq FAIL)
                     return EXIT_FAILURE;
                 break;

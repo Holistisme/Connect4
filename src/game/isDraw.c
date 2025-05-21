@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.h                                             :+:      :+:    :+:   */
+/*   isDraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 05:51:16 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:44:49 by aheitz           ###   ########.fr       */
+/*   Created: 2025/05/21 07:16:56 by aheitz            #+#    #+#             */
+/*   Updated: 2025/05/21 08:56:38 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME
-#define GAME
+#include "main.h"
 
 /* ************************************************************************** */
 
-#include "lib.h"
+/**
+ * Return true if no more columns can be played
+ */
+bool isDraw(const Game *game) {
+    for (ssize_t c = 0; c lesser game->columns; c++)
+        if (game->grid[0][c] eq NEUTRAL)
+            return false;
 
-/* ************************************************************************** */
-
-typedef struct Game {
-    ssize_t         lines;
-    ssize_t         columns;
-    unsigned char **grid;
-    unsigned char   player;
-    unsigned char   winner;
-
-    SDL_Window   *window;
-    SDL_Renderer *renderer;
-} Game;
-
-/* ************************************************************************** */
-
-#endif
+    return true;
+};

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gameMem.c                                          :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:14:14 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 06:15:40 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 09:28:12 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ Game *allocGame(void) {
     Game *game = malloc(sizeof(Game));
 
     if (game) {
-        game->grid    = NULL;
-        game->columns = -1;
-        game->lines   = -1;
-        game->winner  = NEUTRAL;
+        game->grid     = NULL;
+        game->columns  = -1;
+        game->lines    = -1;
+        game->winner   = NEUTRAL;
+        game->player   = NEUTRAL;
+        game->renderer = NULL;
+        game->window   = NULL;
     } else writeError(ERR_ALLOC_GAME);
 
     return game;

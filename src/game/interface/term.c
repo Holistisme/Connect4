@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.h                                             :+:      :+:    :+:   */
+/*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 05:51:16 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:44:49 by aheitz           ###   ########.fr       */
+/*   Created: 2025/05/21 08:41:07 by aheitz            #+#    #+#             */
+/*   Updated: 2025/05/21 09:25:41 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME
-#define GAME
+#include "main.h"
 
 /* ************************************************************************** */
 
-#include "lib.h"
+/**
+ * Game turn management if GUI is disabled
+ */
+int termInterface(Game *game) {
+    t_grid_pos aiChoice;
 
-/* ************************************************************************** */
+    switch (game->player) {
+        case HUMAN:
+            if (humanTurn(game) eq EXIT_FAILURE)
+                return EXIT_FAILURE;
+            break;
+        case AI:
+            aiChoice = check_optimal(game);
+            dropPiece(game, aiChoice.y);
+    };
 
-typedef struct Game {
-    ssize_t         lines;
-    ssize_t         columns;
-    unsigned char **grid;
-    unsigned char   player;
-    unsigned char   winner;
-
-    SDL_Window   *window;
-    SDL_Renderer *renderer;
-} Game;
-
-/* ************************************************************************** */
-
-#endif
+    return EXIT_SUCCESS;
+};

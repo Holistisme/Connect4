@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 04:33:42 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 06:16:43 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 10:43:47 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 /* ************************************************************************** */
 
+#define ERR_ARG_G "Graphical activation parameter should be -g"
+
 /**
  * Define the size of the grid and return code for the validity of the arguments
  */
 static int setSize(Game *game, int argc, char *argv[]) {
-    if (argc not_eq 3) {
+    if (argc lesser 3 or argc greater 4) {
         writeError(ERR_ARGC);
         return EXIT_FAILURE;
     };
@@ -41,6 +43,15 @@ static int setSize(Game *game, int argc, char *argv[]) {
         return EXIT_FAILURE;
     };
 
+    if (argv[3]) {
+        if (getLength(argv[3]) eq 2 and argv[3][0] eq '-' and argv[3][1] eq 'g') {
+            return initGraphical(game);
+        } else {
+            writeError(ERR_ARG_G);
+            return EXIT_FAILURE;
+        };
+    };
+
     return EXIT_SUCCESS;
 };
 
@@ -61,7 +72,8 @@ int main(int argc, char *argv[]) {
     };
 
     srand((unsigned)time(NULL));
-    int status = play(game);
+    const int status = play(game);
+    closeSDL(game);
     freeGame(game);
 
     return status;
