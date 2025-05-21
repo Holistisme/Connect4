@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:14:14 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 09:28:12 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 13:52:12 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Game *allocGame(void) {
         game->lines    = -1;
         game->winner   = NEUTRAL;
         game->player   = NEUTRAL;
+        game->aiReason = NULL;
         game->renderer = NULL;
         game->window   = NULL;
     } else writeError(ERR_ALLOC_GAME);

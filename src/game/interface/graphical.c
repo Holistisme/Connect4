@@ -6,10 +6,11 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:27:28 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:41:37 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 15:49:05 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "function.h"
 #include "main.h"
 
 /* ************************************************************************** */
@@ -158,8 +159,8 @@ int graphInterface(Game *game) {
     };
 
     if (game->player not_eq HUMAN) {
-        t_grid_pos aiChoice = check_optimal(game);
-        dropPiece(game, aiChoice.y);
+        // t_grid_pos aiChoice = check_optimal(game);
+        dropPiece(game, aiThink(game));
     };
 
     if (displayGraphGrid(game) eq EXIT_FAILURE)

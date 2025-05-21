@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:36:37 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:46:45 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 15:47:09 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int  humanTurn(Game *game);
 bool isDraw   (const Game *game);
 bool victory  (const Game *game, const size_t line, const size_t column);
 
-
+size_t aiThink(Game *game);
 
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 04:33:42 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:43:47 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 15:49:52 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ static int setSize(Game *game, int argc, char *argv[]) {
             writeError(ERR_ARG_G);
             return EXIT_FAILURE;
         };
+    };
+
+    if (not (game->aiReason = malloc(sizeof(int) * game->columns))) {
+        writeError(ERR_AI_REASON);
+        return EXIT_FAILURE;
     };
 
     return EXIT_SUCCESS;
