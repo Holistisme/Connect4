@@ -6,15 +6,14 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 04:33:42 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 15:49:52 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:46:32 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include <time.h>
 
 /* ************************************************************************** */
-
-#define ERR_ARG_G "Graphical activation parameter should be -g"
 
 /**
  * Define the size of the grid and return code for the validity of the arguments
@@ -43,6 +42,14 @@ static int setSize(Game *game, int argc, char *argv[]) {
         return EXIT_FAILURE;
     };
 
+    if (not (game->aiReason = malloc(sizeof(*game->aiReason) * game->columns))) {
+        writeError(ERR_AI_REASON);
+        return EXIT_FAILURE;
+    };
+
+    if (allocGrid(game) eq EXIT_FAILURE)
+        return EXIT_FAILURE;
+
     if (argv[3]) {
         if (getLength(argv[3]) eq 2 and argv[3][0] eq '-' and argv[3][1] eq 'g') {
             return initGraphical(game);
@@ -50,11 +57,6 @@ static int setSize(Game *game, int argc, char *argv[]) {
             writeError(ERR_ARG_G);
             return EXIT_FAILURE;
         };
-    };
-
-    if (not (game->aiReason = malloc(sizeof(int) * game->columns))) {
-        writeError(ERR_AI_REASON);
-        return EXIT_FAILURE;
     };
 
     return EXIT_SUCCESS;
@@ -71,7 +73,7 @@ int main(int argc, char *argv[]) {
     if (not game)
         return EXIT_FAILURE;
 
-    if (setSize(game, argc, argv) eq EXIT_FAILURE or allocGrid(game) eq EXIT_FAILURE) {
+    if (setSize(game, argc, argv) eq EXIT_FAILURE) {
         freeGame(game);
         return EXIT_FAILURE;
     };

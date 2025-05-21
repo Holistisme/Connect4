@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:28:27 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 15:50:03 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:26:01 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 /* ************************************************************************** */
 
-#define ERR_ARGV "Game board sizes are not unsigned integers"
-#define ERR_ARGC "Game should be executed as ./connect4 <lines> <columns> (-g)"
+#define ERR_ARGV  "Game board sizes are not unsigned integers"
+#define ERR_ARGC  "Game should be executed as ./connect4 <lines> <columns> (-g)"
+#define ERR_ARG_G "Graphical activation parameter should be -g"
 
 #define ERR_LINES_MIN   "Number of lines too few (<6)"
 #define ERR_LINES_MAX   "Number of lines too high (>20)"

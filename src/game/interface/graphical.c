@@ -6,28 +6,13 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:27:28 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 15:49:05 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:17:55 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "function.h"
 #include "main.h"
 
 /* ************************************************************************** */
-
-/**
- * Free and gracefully exit the graphical interface
- */
-void closeSDL(Game *game) {
-    if (not game->window)
-        return;
-
-    SDL_DestroyRenderer(game->renderer);
-    SDL_DestroyWindow  (game->window);
-    game->window   = NULL;
-    game->renderer = NULL;
-    SDL_Quit();
-};
 
 /**
  * Initialization and verification of SDL returns for graphics display
@@ -55,7 +40,21 @@ int initGraphical(Game *game) {
 };
 
 /**
- * Detects the column pointed to by the user's click
+ * Free and gracefully exit the graphical interface
+ */
+void closeSDL(Game *game) {
+    if (not game->window)
+        return;
+
+    SDL_DestroyRenderer(game->renderer);
+    SDL_DestroyWindow  (game->window);
+    game->window   = NULL;
+    game->renderer = NULL;
+    SDL_Quit();
+};
+
+/**
+ * Detect the column pointed to by the user's click
  */
 static int clickedColumn(Game *game) {
     SDL_Event e;
@@ -72,7 +71,7 @@ static int clickedColumn(Game *game) {
 };
 
 /**
- * 
+ * Display colored grid cells
  */
 static int displayGraphGrid(const Game *game) {
     if (SDL_SetRenderDrawColor(game->renderer, 0, 0, 0, 255) not_eq SUCCESS) {
@@ -106,16 +105,11 @@ static int displayGraphGrid(const Game *game) {
                     };
             };
 
-            SDL_Rect cell = {
-                CELL_SIZE * c,
-                CELL_SIZE * l,
-                CELL_SIZE - 10,
-                CELL_SIZE - 10
-            };
+            SDL_Rect cell = { CELL_SIZE * c, CELL_SIZE * l, CELL_SIZE - 10, CELL_SIZE - 10 };
             if (SDL_RenderFillRect(game->renderer, &cell) not_eq SUCCESS) {
                 writeError(ERR_SDL_FILL);
                 return EXIT_FAILURE;
-            }
+            };
         };
     };
 
@@ -158,12 +152,8 @@ int graphInterface(Game *game) {
         };
     };
 
-    if (game->player not_eq HUMAN) {
-        // t_grid_pos aiChoice = check_optimal(game);
+    if (game->player not_eq HUMAN)
         dropPiece(game, aiThink(game));
-    };
 
-    if (displayGraphGrid(game) eq EXIT_FAILURE)
-        return EXIT_FAILURE;
-    return EXIT_SUCCESS;
+    return displayGraphGrid(game);
 };

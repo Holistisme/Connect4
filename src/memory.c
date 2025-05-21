@@ -6,11 +6,12 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:14:14 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 13:52:12 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:50:06 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include <time.h>
 
 /* ************************************************************************** */
 
@@ -71,5 +72,7 @@ void freeGame(Game *game) {
         }
         free(game->grid);
     };
+    if (game->aiReason)
+        free(game->aiReason);
     free(game);
 };
