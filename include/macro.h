@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:32:28 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 09:47:55 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 06:23:56 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@
 #define NEUTRAL '0'
 #define PLAYER  '1'
 #define AI      '2'
+
+#define RED   "\033[41m  \033[0m"
+#define BLUE  "\033[44m  \033[0m"
+#define RESET "\033[0m"
+#define ERASE "\033[2K\r\033[1A"
+
+#define CHOICE_PROMPT "\nYour column choice: "
+#define END_VICTORY   "\n\033[41mCongratulations, you've won!\033[0m\n"
+#define END_DEFEAT    "\n\033[44mThe AI has unfortunately defeated you!\033[0m\n"
+#define END_DRAW      "\n\033[47mEquality on both sides!\n"
+#define WELCOME       "Welcome \033[41mhuman\033[0m, you must defeat this stupid \033[44mAI\033[0m!\n\n"
 
 #define FAIL -1
 

@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:36:09 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/20 06:37:40 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/20 16:29:18 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Return number of characters in a string
  */
-size_t getLength(string str) {
+size_t getLength(const string str) {
     size_t len = 0;
 
     if (str)

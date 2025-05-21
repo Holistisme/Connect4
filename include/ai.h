@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ai.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tritter <tritter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:52:42 by tritter           #+#    #+#             */
-/*   Updated: 2025/05/20 14:35:13 by tritter          ###   ########.fr       */
+/*   Updated: 2025/05/20 15:40:45 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Game.h"
 
 typedef struct grid_pos
 {
@@ -18,7 +20,7 @@ typedef struct grid_pos
 } t_grid_pos;
 
 int         is_full(char c);
-int         legal_placement(char **grid, t_grid_pos origin);
+int         legal_placement(Game *data, t_grid_pos origin);
 t_grid_pos  check_optimal(Game *data);
 t_grid_pos  optimal_move_check(Game *data, t_grid_pos origin);
 t_grid_pos  left_check(Game *data, t_grid_pos origin);

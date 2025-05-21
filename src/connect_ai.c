@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   connect_ai.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tritter <tritter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:52:19 by tritter           #+#    #+#             */
-/*   Updated: 2025/05/20 14:53:12 by tritter          ###   ########.fr       */
+/*   Updated: 2025/05/20 15:58:56 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int is_full(char c)
 
 int legal_placement(Game *data, t_grid_pos origin)
 {
-    if (origin.x == data->linesSize)
+    if (origin.x == data->lines - 1)
         return (1);
     else
         return (is_full(data->grid[origin.x + 1][origin.y]));
-
 }
 
 t_grid_pos check_optimal(Game *data)
@@ -39,9 +38,9 @@ t_grid_pos check_optimal(Game *data)
     curr.x = 0;
     curr.y = 0;
     curr.length = 0;
-    while (curr.x < data->columnSize)
+    while (curr.x < data->lines)
     {
-        while (curr.y < data->linesSize)
+        while (curr.y < data->columns)
         {
             to_evaluate = optimal_move_check(data, curr);
             if (to_evaluate.length > optimal.length)
@@ -98,7 +97,7 @@ t_grid_pos left_check(Game *data, t_grid_pos origin)
             }
             else if (data->grid[curr.x][curr.y] == NEUTRAL)
             {
-                if (legal_placement(data->grid, curr))
+                if (legal_placement(data, curr))
                     return (curr);
                 else 
                 {
@@ -114,6 +113,8 @@ t_grid_pos left_check(Game *data, t_grid_pos origin)
         }
         i++; 
     }
+
+    return curr;
 }
 
 t_grid_pos right_check(Game *data, t_grid_pos origin)
@@ -126,7 +127,7 @@ t_grid_pos right_check(Game *data, t_grid_pos origin)
     curr.length = 0;
     while (i < 4)
     {
-        if (curr.y < data->linesSize)
+        if (curr.y < data->lines)
         {
             if (data->grid[curr.x][curr.y] == AI)
             {
@@ -135,7 +136,7 @@ t_grid_pos right_check(Game *data, t_grid_pos origin)
             }
             else if (data->grid[curr.x][curr.y] == NEUTRAL)
             {
-                if (legal_placement(data->grid, curr))
+                if (legal_placement(data, curr))
                     return (curr);
                 else 
                 {
@@ -151,6 +152,8 @@ t_grid_pos right_check(Game *data, t_grid_pos origin)
         }
         i++;
     }
+
+    return curr;
 }
 
 t_grid_pos diagonal_right_check(Game *data, t_grid_pos origin)
@@ -163,7 +166,7 @@ t_grid_pos diagonal_right_check(Game *data, t_grid_pos origin)
     curr.length = 0;
     while (i < 4)
     {
-        if (curr.x < data->linesSize && curr.y < data->columnSize)
+        if (curr.x < data->lines && curr.y < data->columns)
         {
             if (data->grid[curr.x][curr.y] == AI)
             {
@@ -173,7 +176,7 @@ t_grid_pos diagonal_right_check(Game *data, t_grid_pos origin)
             }
             else if (data->grid[curr.x][curr.y] == NEUTRAL)
             {
-                if (legal_placement(data->grid, curr))
+                if (legal_placement(data, curr))
                     return (curr);
                 else 
                 {
@@ -189,6 +192,8 @@ t_grid_pos diagonal_right_check(Game *data, t_grid_pos origin)
         } 
         i++;
     }
+
+    return curr;
 }
 
 t_grid_pos diagonal_left_check(Game *data, t_grid_pos origin)
@@ -201,7 +206,7 @@ t_grid_pos diagonal_left_check(Game *data, t_grid_pos origin)
     curr.length = 0;
     while (i < 4)
     {
-        if (curr.x < data->linesSize && curr.y > 0)
+        if (curr.x < data->lines && curr.y > 0)
         {
             if (data->grid[curr.x][curr.y] == AI)
             {
@@ -211,7 +216,7 @@ t_grid_pos diagonal_left_check(Game *data, t_grid_pos origin)
             }
             else if (data->grid[curr.x][curr.y] == NEUTRAL)
             {
-                if (legal_placement(data->grid, curr))
+                if (legal_placement(data, curr))
                     return (curr);
                 else 
                 {
@@ -227,6 +232,8 @@ t_grid_pos diagonal_left_check(Game *data, t_grid_pos origin)
         }
         i++;
     }
+
+    return curr;
 }
 
 t_grid_pos up_check(Game *data, t_grid_pos origin)
@@ -239,7 +246,7 @@ t_grid_pos up_check(Game *data, t_grid_pos origin)
     curr.length = 0;
     while (i < 4)
     {
-        if (curr.x < data->linesSize)
+        if (curr.x < data->lines)
         {
             if (data->grid[curr.x][curr.y] == AI)
             {
@@ -248,7 +255,7 @@ t_grid_pos up_check(Game *data, t_grid_pos origin)
             }
             else if (data->grid[curr.x][curr.y] == NEUTRAL)
             {
-                if (legal_placement(data->grid, curr))
+                if (legal_placement(data, curr))
                     return (curr);
                 else 
                 {
@@ -264,4 +271,6 @@ t_grid_pos up_check(Game *data, t_grid_pos origin)
         } 
         i++;
     }
+
+    return curr;
 }
