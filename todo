@@ -1,6 +1,0 @@
-- Free aiBrain;
-- setSize return the correct thing when using initGraphical
-- malloc of the raain in the memory.c ?
-- Clean the fucking files (printf)
-- Try to understand the project
-- Check crash and leaks (without -g)

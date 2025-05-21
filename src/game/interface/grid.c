@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:48:04 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 08:51:30 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 21:03:49 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int clearTerm(const Game *game) {
 };
 
 /**
- * Displays each character of a line and player positions with colors
+ * Display each character of a line and player positions with colors
  */
 static int displayLine(const Game *game, const size_t line) {
     for (ssize_t c = 0; c lesser game->columns; c++) {
@@ -50,7 +50,7 @@ static int displayLine(const Game *game, const size_t line) {
 };
 
 /**
- * Displays the grid on the terminal
+ * Display the grid on the terminal
  */
 int displayGrid(const Game *game) {
     static bool displayed = false;

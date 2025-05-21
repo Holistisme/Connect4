@@ -6,7 +6,7 @@
 #    By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 04:30:36 by aheitz            #+#    #+#              #
-#    Updated: 2025/05/21 15:52:06 by aheitz           ###   ########.fr        #
+#    Updated: 2025/05/21 20:20:09 by aheitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ INTERFACE = $(GAME)/interface
 UTIL      = src/util
 
 SRCS = src/main.c               \
-       src/connect_ai.c         \
        src/memory.c             \
        src/play.c               \
        $(UTIL)/getLength.c      \

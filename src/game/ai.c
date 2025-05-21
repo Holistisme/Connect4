@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:49:03 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 15:51:35 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:40:52 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 /* ************************************************************************** */
 
+/**
+ * AI throws dices in its brain, to isolate a column
+ */
 size_t aiPool(Game *game) {
     size_t n = 0;
     size_t pool[MAX_COLUMNS];
@@ -24,7 +27,7 @@ size_t aiPool(Game *game) {
     if (not n)
         return rand() % game->columns;
 
-    int iteration = 1;
+    size_t iteration = 1;
     while (n greater 1) {
         size_t newPool[MAX_COLUMNS];
         size_t m = 0;
@@ -51,8 +54,7 @@ size_t aiPool(Game *game) {
 /**
  * Check sequel size on an axis
  */
-static size_t scanAxisSequel(const Game *game, const t_grid_pos token, const ssize_t dirL, const ssize_t dirC, const unsigned char p) {
-    const unsigned char player = p;
+static size_t scanAxisSequel(Game *game, const t_grid_pos token, const ssize_t dirL, const ssize_t dirC, const unsigned char player) {
     if (player eq NEUTRAL)
         return false;
 
@@ -77,52 +79,50 @@ static size_t scanAxisSequel(const Game *game, const t_grid_pos token, const ssi
             scanC -= dirC;
         };
 
+    if (sequel at_least 4)
+        game->aiSeeEnd = true;
     return sequel;
 };
 
 /**
  * Check victory conditions on each axis
  */
-size_t longestSequel(const Game *game, const size_t line, const size_t column, const unsigned char p) {
+static size_t positionInterest(Game *game, const size_t line, const size_t column, const unsigned char player) {
     const t_grid_pos entry = {.x = line, .y = column};
-    const size_t hor = scanAxisSequel(game, entry, 0, 1, p);
-    const size_t vert = scanAxisSequel(game, entry, 1, 0, p);
-    const size_t diag1 = scanAxisSequel(game, entry, 1, 1, p);
-    const size_t diag2 = scanAxisSequel(game, entry, 1, -1, p);
-    size_t longest = hor;
-    if (longest < vert) longest = vert;
-    if (longest < diag1) longest = diag1;
-    if (longest < diag2) longest = diag2;
 
-        // printf("%zu\n", longest);
-    return longest;
+    return scanAxisSequel(game, entry, 0, 1, player)
+        + scanAxisSequel(game, entry, 1, 0, player)
+        + scanAxisSequel(game, entry, 1, 1, player)
+        + scanAxisSequel(game, entry, 1, -1, player);
 };
 
+/**
+ * AI thinks and returns a value it considers interesting
+ */
 size_t aiThink(Game *game) {
+    if (not game->aiReason)
+        return rand() % game->columns;
+
     for (ssize_t c = 0; c lesser game->columns; c++) {
+        game->aiSeeEnd    = false;
         game->aiReason[c] = 0;
 
         if (game->grid[0][c] not_eq NEUTRAL)
             continue;
 
         size_t l = 0;
-        for (ssize_t scan = game->lines - 1;
-            scan at_least 0;
-            scan--) {
+        for (ssize_t scan = game->lines - 1; scan at_least 0; scan--) {
             if (game->grid[scan][c] eq NEUTRAL) {
                 l = scan;
                 break;
             };
         };
 
-        if (longestSequel(game, l, c, AI) at_least 4)
-            game->aiReason[c] += 10;
+        game->aiReason[c] += positionInterest(game, l, c, HUMAN);
+        game->aiReason[c] += positionInterest(game, l, c, AI);
 
-        if (longestSequel(game, l, c, HUMAN) at_least 4)
-            game->aiReason[c] += 10;
-
-        game->aiReason[c] += longestSequel(game, l, c, HUMAN);
-        game->aiReason[c] += longestSequel(game, l, c, AI);
+        if (game->aiSeeEnd)
+            game->aiReason[c] *= 4;
     };
     return aiPool(game);
 };
