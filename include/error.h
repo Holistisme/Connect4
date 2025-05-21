@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 06:28:27 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 09:44:48 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/05/21 15:50:03 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #define ERR_ALLOC_GAME "malloc() failed on game allocation"
 #define ERR_ALLOC_GRID "malloc() failed on grid allocation"
 #define ERR_ALLOC_LINE "malloc() failed on a line allocation"
+#define ERR_AI_REASON  "malloc() failed for ai reasons"
 
 #define ERR_WRITE_CLEAN  "write() failed when terminal cleaning"
 #define ERR_WRITE_LINE   "write() failed when printing grid"

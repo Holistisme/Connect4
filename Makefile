@@ -6,7 +6,7 @@
 #    By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 04:30:36 by aheitz            #+#    #+#              #
-#    Updated: 2025/05/21 10:43:21 by aheitz           ###   ########.fr        #
+#    Updated: 2025/05/21 15:52:06 by aheitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS = src/main.c               \
        $(UTIL)/getLength.c      \
        $(UTIL)/writeError.c     \
        $(UTIL)/atoui.c          \
+       $(GAME)/ai.c             \
        $(GAME)/dropPiece.c      \
        $(GAME)/humanTurn.c      \
        $(GAME)/isDraw.c         \
