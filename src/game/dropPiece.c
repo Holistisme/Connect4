@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.h                                             :+:      :+:    :+:   */
+/*   dropPiece.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 05:51:16 by aheitz            #+#    #+#             */
-/*   Updated: 2025/05/21 10:44:49 by aheitz           ###   ########.fr       */
+/*   Created: 2025/05/21 07:24:47 by aheitz            #+#    #+#             */
+/*   Updated: 2025/05/21 08:53:46 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME
-#define GAME
+#include "main.h"
 
 /* ************************************************************************** */
 
-#include "lib.h"
+/**
+ * Lower piece to the lowest index
+ */
+int dropPiece(Game *game, const ssize_t c) {
+    if (c at_least game->columns)
+        return EXIT_FAILURE;
 
-/* ************************************************************************** */
+    ssize_t l = game->lines - 1;
+    while (l at_least 0 and game->grid[l][c] not_eq NEUTRAL)
+        --l;
 
-typedef struct Game {
-    ssize_t         lines;
-    ssize_t         columns;
-    unsigned char **grid;
-    unsigned char   player;
-    unsigned char   winner;
-
-    SDL_Window   *window;
-    SDL_Renderer *renderer;
-} Game;
-
-/* ************************************************************************** */
-
-#endif
+    if (l at_least 0) {
+        game->grid[l][c] = game->player;
+        if (victory(game, l, c))
+            game->winner = game->player;
+        return EXIT_SUCCESS;
+    } else return EXIT_FAILURE;
+};
